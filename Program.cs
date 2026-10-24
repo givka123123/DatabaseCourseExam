@@ -5,6 +5,16 @@ using DatabaseCourseExam.EntityFramework;
 using DatabaseCourseExam.DapperTasks;
 
 DataTable? studentsTable = null;
+/*
+ 1. ExecuteReader, ExecuteScalar, ExecuteNonQuery:  
+   Первый читает много строк, второй — ровно одно значение (например, `COUNT`), третий — делает `INSERT`/`UPDATE`/`DELETE` и ничего не возвращает
+
+11. Как EF Core узнаёт об изменениях:
+   EF сам следит за всеми загруженными объектами. Поменял свойство — он это запомнил, а при `SaveChanges()` сам сгенерирует нужный `UPDATE`
+
+15. Создаёт ли async новый поток:  
+   Нет. Async просто освобождает текущий поток, пока ждёт долгую операцию (например, ответ от базы), но сам по себе новые потоки не плодит
+ */
 
 bool TryReadInt(string prompt, out int value)
 {
